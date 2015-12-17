@@ -5,6 +5,9 @@
 # * https://github.com/holman/dotfiles
 # ...and probably other places I forgot to attribute (sorry!)
 
+# CHANGE THIS TO WHEREVER YOU HAVE THIS REPO SYNCED
+scriptsdir="~/scripts"
+
 
 # figure out what OS we're running we're dealing with
 # kudos: http://stackoverflow.com/a/17072017/992504
@@ -56,6 +59,11 @@ alias showpath="echo $PATH | tr ':' '\n'"
 # murder .DS_Store files
 alias fuckdsstore="find . -type f -name '*.DS_Store' -ls -delete"
 
+# make a backup of a file
+function bak() {
+  cp "$@" "$@.bak"
+}
+
 
 ############################################################################
 # HTTP AND NETWORKING
@@ -95,20 +103,25 @@ alias c="tr -d '\n' | pbcopy"
 alias cleanspace="tr -s '[:space:]' ' '"
 
 # list all the words in the input file
-alias listwords='tr -cs "[:alnum:]" "\n"'
+alias listwords='tr -cs "[:word:]" "\n"'
 
 # convert letter case
-alias whisper='tr "[:upper:]" "[:lower:]"'
-alias shout='tr "[:lower:]" "[:upper:]"'
+alias lower='tr "[:upper:]" "[:lower:]"'
+alias upper='tr "[:lower:]" "[:upper:]"'
 
 # clean formatted timestamps attached to running program
 alias tss="ts '[%Y-%m-%d %H:%M:%S]'"
 
+# echo to stderr
+alias errcho='>&2 echo'
+
 # generate a password that is random enough for simple uses
-if [ "$ostype" != "macosx" ]; then
-    alias genpasswd="date +%s-%N | sha256sum | base64 | head -c 32 ; echo"
+# TODO: make character length specifiable via parameter
+# TODO: figure out some way to allow user-generated entropy
+if [ "$ostype" == "macosx" ]; then
+    alias genpasswd="date +%s-%N | shasum -a 256 | base64 | head -c 32 ; echo"
 else
-    alias genpasswd="date +%s-%N | shasum | base64 | head -c 32 ; echo"
+    alias genpasswd="date +%s-%N | sha256sum | base64 | head -c 32 ; echo"
 fi
 
 # Syntax-highlight JSON strings or files
@@ -123,10 +136,61 @@ function pjson() {
 
 
 ############################################################################
+# SOUND AND AUDIO
+############################################################################
+
+# play the alert sound
+alias ding="tput bel"
+
+# play an mp3 without having to remember what mp3 software is installed
+# TODO: try to add volume control
+# TODO: create playogg() and playwav()
+playmp3() {
+    player=""
+    declare -a players=(
+        "afplay" # OS X built-in
+        "ffplay -nodisp" # ffmpeg
+        "mpg123 --quiet"
+        "maplay"
+        "mplayer -really-quiet -noconsolecontrols"
+        "play -V1" # SoX
+        "cvlc --play-and-exit" # VLC curses interface
+    )
+
+    for p in "${players[@]}"; do
+        pBase=$(echo $p | cut -d' ' -f1)
+        if command -v $pBase >/dev/null; then
+            player="$p"
+            break
+        fi
+    done
+
+    if [ -n "$player" ]; then
+        $player $@
+    else
+        tput bel
+        >&2 echo "Could not find an mp3 player"
+    fi
+}
+
+# play dumb sound effects
+for f in airhorn fanfare gg wilhelm quack xperror
+do
+    alias "$f"="playmp3 $scriptsdir/sounds/$f.mp3"
+done
+
+# volume controls
+if [ "$ostype" == "macosx" ]; then
+  alias stfu="osascript -e 'set volume output muted true'"
+  alias pumpitup="osascript -e 'set volume 7'"
+fi
+
+
+############################################################################
 # HACKS AND OTHER GARBAGE
 ############################################################################
 
-# fix gnome .desktop files
+# fix gnome .desktop files (resolves the issue where you have two dock icons for the same app)
 alias fixchrome="sudo sed '/\[Desktop Entry\]/a StartupWMClass=Google-chrome-stable' /usr/share/applications/google-chrome.desktop"
 alias fixmysqlworkbench="sudo sed '/\[Desktop Entry\]/a StartupWMClass=Mysql-workbench-bin' /usr/share/applications/mysql-workbench.desktop"
 
@@ -138,12 +202,10 @@ alias fixmysqlworkbench="sudo sed '/\[Desktop Entry\]/a StartupWMClass=Mysql-wor
 # git stuff
 alias git-undo="git reset --soft HEAD^"
 
-# volume controls
-alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume 7'"
-
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+# Lock the screen (when going AFK)
+if [ "$ostype" == "macosx" ]; then
+  alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+fi
