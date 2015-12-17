@@ -90,6 +90,16 @@ alias localip="ipconfig getifaddr en0"
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
 
+# convert all whitespace characters to spaces and remove duplicate spaces
+alias cleanspace="tr -s '[:space:]' ' '"
+
+# list all the words in the input file
+alias listwords='tr -cs "[:alnum:]" "\n"'
+
+# convert letter case
+alias whisper='tr "[:upper:]" "[:lower:]"'
+alias shout='tr "[:lower:]" "[:upper:]"'
+
 # clean formatted timestamps attached to running program
 alias tss="ts '[%Y-%m-%d %H:%M:%S]'"
 
