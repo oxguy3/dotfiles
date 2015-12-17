@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+#
+# playmp3 by Hayden Schiff (oxguy3)
+#
+# Play an MP3 with whatever MP3 software is already installed.
+# Do whatever you want with this; the license is WTFPL.
+#
+# TODO: try to add volume control
+# TODO: create playogg() and playwav()
+
+player=""
+declare -a players=(
+    "afplay" # OS X built-in
+    "ffplay -nodisp" # ffmpeg
+    "mpg123 --quiet"
+    "maplay"
+    "mplayer -really-quiet -noconsolecontrols"
+    "play -V1" # SoX
+    "cvlc --play-and-exit" # VLC curses interface
+)
+
+for p in "${players[@]}"; do
+    pBase=$(echo $p | cut -d' ' -f1)
+    if command -v $pBase >/dev/null; then
+        player="$p"
+        break
+    fi
+done
+
+if [ -n "$player" ]; then
+    $player $@
+else
+    >&2 echo -e "\aCould not find an mp3 player"
+fi

@@ -9,7 +9,7 @@
 scriptsdir="~/scripts"
 
 
-# figure out what OS we're running we're dealing with
+# figure out what OS we're running
 # kudos: http://stackoverflow.com/a/17072017/992504
 ostype="unknown"
 if [ "$(uname)" == "Darwin" ]; then
@@ -61,7 +61,7 @@ alias fuckdsstore="find . -type f -name '*.DS_Store' -ls -delete"
 
 # make a backup of a file
 function bak() {
-  cp "$@" "$@.bak"
+    cp "$@" "$@.bak"
 }
 
 
@@ -97,7 +97,13 @@ alias localip="ipconfig getifaddr en0"
 ############################################################################
 
 # Trim new lines and copy to clipboard
-alias c="tr -d '\n' | pbcopy"
+if [ "$ostype" == "macosx" ]; then
+    alias c="tr -d '\n' | pbcopy"
+elif [ "$ostype" == "linux" ]; then
+    alias c="tr -d '\n' | xclip"
+elif [ "$ostype" == "windows" ]; then
+    alias c="tr -d '\n' | clip"
+fi
 
 # convert all whitespace characters to spaces and remove duplicate spaces
 alias cleanspace="tr -s '[:space:]' ' '"
@@ -139,50 +145,19 @@ function pjson() {
 # SOUND AND AUDIO
 ############################################################################
 
-# play the alert sound
-alias ding="tput bel"
-
-# play an mp3 without having to remember what mp3 software is installed
-# TODO: try to add volume control
-# TODO: create playogg() and playwav()
-playmp3() {
-    player=""
-    declare -a players=(
-        "afplay" # OS X built-in
-        "ffplay -nodisp" # ffmpeg
-        "mpg123 --quiet"
-        "maplay"
-        "mplayer -really-quiet -noconsolecontrols"
-        "play -V1" # SoX
-        "cvlc --play-and-exit" # VLC curses interface
-    )
-
-    for p in "${players[@]}"; do
-        pBase=$(echo $p | cut -d' ' -f1)
-        if command -v $pBase >/dev/null; then
-            player="$p"
-            break
-        fi
-    done
-
-    if [ -n "$player" ]; then
-        $player $@
-    else
-        >&2 echo -e "\aCould not find an mp3 player"
-        tput bel
-    fi
-}
-
 # play dumb sound effects
-for f in airhorn dundun fanfare gg heylisten inception priceiswrong quack easybtn wilhelm wololo wompwomp xperror
+for f in airhorn dundun fanfare gg heylisten inception priceiswrong quack easybtn wilhelm wololo womp xperror
 do
     alias "$f"="playmp3 $scriptsdir/sounds/$f.mp3"
 done
 
+# play the alert sound (terminal bell)
+alias ding='echo -n -e "\a"'
+
 # volume controls
 if [ "$ostype" == "macosx" ]; then
-  alias stfu="osascript -e 'set volume output muted true'"
-  alias pumpitup="osascript -e 'set volume 7'"
+    alias stfu="osascript -e 'set volume output muted true'"
+    alias pumpitup="osascript -e 'set volume 7'"
 fi
 
 
