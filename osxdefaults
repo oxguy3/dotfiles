@@ -3,9 +3,40 @@
 # based primarily on https://mths.be/osx
 # modified for my personal tastes
 
+
+# TODO: install 3270font as default monospace everywhere https://github.com/rbanffy/3270font
+
 # make sure sudo is available, and keep sudo alive
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+##### INSTALL SCRIPTS #####
+
+# gotta get homebrew
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# obvious first brew commands
+brew update
+brew install wget
+brew install python
+brew install python3
+
+# very useful python libraries
+pip install lxml
+pip install requests
+
+# CLI tools for manipulating tabular files (primarily CSVs)
+pip install csvkit
+
+# CLI tool for viewing Excel/CSV files
+sudo -H pip3 install x_x
+
+# git command for quickly saving just before evacuating burning building
+npm install -g git-fire
+
+# bitly-cli for creating bit.ly links. do this:  bitly -u 'http://foo.bar/baz'
+npm install -g bitly-cli
 
 
 ##### GENERAL UI/UX STUFF #####
@@ -112,7 +143,7 @@ defaults write com.apple.finder ShowStatusBar -bool true
 defaults write com.apple.finder ShowPathbar -bool true
 
 # Display full POSIX path as Finder window title
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+#defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
