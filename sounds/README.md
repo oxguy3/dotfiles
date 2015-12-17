@@ -13,9 +13,8 @@ Here's an explanation of what each sound is supposed to be:
 * **quack.mp3**: a duck
 * **wilhelm.mp3**: the infamous [Wilhelm scream](https://en.wikipedia.org/wiki/Wilhelm_scream)
 * **wololo.mp3**: priest sound effect from _Age of Empires_
-* **wompwomp.mp3**: sad trombone
+* **womp.mp3**: sad trombone
 * **xperror.mp3**: the classic error noise from Windows XP
 
-
 Some day I'll convert these all to Ogg Vorbis sounds and accept free software
-as my lord and savior, but today I'm lazy
+as my lord and savior, but today I'm lazy.
