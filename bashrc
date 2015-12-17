@@ -61,9 +61,8 @@ alias fuckdsstore="find . -type f -name '*.DS_Store' -ls -delete"
 
 # make a backup of a file
 function bak() {
-    cp "$@" "$@.bak"
+    cp $@{,.bak}
 }
-
 
 ############################################################################
 # HTTP AND NETWORKING
@@ -146,7 +145,7 @@ function pjson() {
 ############################################################################
 
 # play dumb sound effects
-for f in airhorn dundun fanfare gg heylisten inception priceiswrong quack easybtn wilhelm wololo womp xperror
+for f in airhorn dundun fanfare gg heylisten inception nope priceiswrong quack easybtn wilhelm wololo womp xperror
 do
     alias "$f"="playmp3 $scriptsdir/sounds/$f.mp3"
 done
@@ -174,6 +173,63 @@ alias fixmysqlworkbench="sudo sed '/\[Desktop Entry\]/a StartupWMClass=Mysql-wor
 # MISCELLANEOUS CRAP
 ############################################################################
 
+# # universal package manager basic commands
+# if command -v "brew" >/dev/null; then
+#     alias "pm"="brew"
+#     alias "pmin"="brew install"
+#     alias "pmun"="brew uninstall"
+#     alias "pmre"="brew reinstall"
+#     alias "pmup"="brew update"
+#     alias "pmls"="brew list"
+#     alias "pmfind"=
+# elif command -v "dnf" >/dev/null; then
+#     alias "pm"="dnf"
+#     alias "pmin"="dnf install"
+#     alias "pmun"="brew uninstall"
+#     alias "pmre"="brew reinstall"
+#     alias "pmup"="brew update"
+#     alias "pmls"="brew update"
+# fi
+#
+# pman=""
+#
+# for p in brew apt-get yum dnf pacman; do
+#     if command -v $p >/dev/null; then
+#         pman="$p"
+#         break
+#     fi
+# done
+#
+# if [ -z "$pman" ]; then
+#     alias "pm"="$pm"
+#     alias "pmwhat"="echo 'You are using $pm!'"
+#     if [ "$pman" == "pacman" ]; then
+#         alias "pmin"="$pm --sync"
+#         alias "pmun"="$pm --remove"
+#         #alias "pmre"="$pm reinstall"
+#         alias "pmrf"="$pm --sync --refresh"
+#         alias "pmup"="$pm --upgrade"
+#         alias "pmuu"="$pm --sysupgrade --"
+#         alias "pmls"="$pm --query"
+#         alias "pmsearch"="$pm search"
+#     else
+#         alias "pmin"="$pm install"
+#         alias "pmun"="$pm uninstall"
+#         alias "pmls"="$pm list"
+#         alias "pmsearch"="$pm search"
+#         if [ "$pman" != "apt-get" ]; then
+#
+#             alias "pmre"="$pm reinstall"
+#         if [ "$pman" == "yum" ] || [ "$pman" == "dnf" ]; then
+#             alias "pmup"="$pm update"
+#             alias "pmuu"="$pm update"
+#         else
+#             alias "pmup"="$pm upgrade"
+#             alias "pmuu"="$pm update; $pm upgrade"
+#     fi
+# fi
+
+
 # git stuff
 alias git-undo="git reset --soft HEAD^"
 
@@ -183,4 +239,11 @@ alias reload="exec $SHELL -l"
 # Lock the screen (when going AFK)
 if [ "$ostype" == "macosx" ]; then
   alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+fi
+
+# typing is really hard, okay?
+alias dumbtypo="echo 'LEARN TO TYPE, MORON'"
+if [ "$ostype" == "macosx" ]; then
+    alias brwe="dumbtypo; brew"
+    alias sl="dumbtypo; ls"
 fi

@@ -16,17 +16,39 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # gotta get homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# obvious first brew commands
+# update brew
 brew update
+
+# the indispensible http scraping utility
 brew install wget
+
+# lots of useful dev environments
+brew install ruby
 brew install python
 brew install python3
+brew install node
+
+# pipe viewing/monitoring utility
+brew install pv
+
+# more efficient compression tool than tar.gz
+brew install xz
+
+# tool for getting system specs in a pretty output
+brew install archey
+
+# tool for downloading audio/video from various websites
+brew install youtube-dl
+
+# ffmpeg is a multimedia utility pack
+brew install ffmpeg --with-ffplay --with-faac
+
 
 # very useful python libraries
 pip install lxml
 pip install requests
 
-# CLI tools for manipulating tabular files (primarily CSVs)
+# CLI utility belt for manipulating tabular files (primarily CSVs)
 pip install csvkit
 
 # CLI tool for viewing Excel/CSV files
@@ -35,8 +57,11 @@ sudo -H pip3 install x_x
 # git command for quickly saving just before evacuating burning building
 npm install -g git-fire
 
+# CLI utility belt for JSON/JavaScript
+npm install -g underscore-cli
+
 # bitly-cli for creating bit.ly links. do this:  bitly -u 'http://foo.bar/baz'
-npm install -g bitly-cli
+#npm install -g bitly-cli
 
 
 ##### GENERAL UI/UX STUFF #####

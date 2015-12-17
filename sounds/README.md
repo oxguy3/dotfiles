@@ -9,6 +9,7 @@ Here's an explanation of what each sound is supposed to be:
 * **gg.mp3**: shouting "GG!!!"
 * **heylisten.mp3**: Navi from _Legend of Zelda_ games
 * **inception.mp3**: dramatic noise from the movie _Inception_
+* **nope.mp3**: _Team Fortress 2_ engineer saying "nope"
 * **priceiswrong.mp3**: losing horn from _The Price is Right_
 * **quack.mp3**: a duck
 * **wilhelm.mp3**: the infamous [Wilhelm scream](https://en.wikipedia.org/wiki/Wilhelm_scream)

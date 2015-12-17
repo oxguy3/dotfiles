@@ -10,8 +10,8 @@
 
 player=""
 declare -a players=(
-    "afplay" # OS X built-in
     "ffplay -nodisp" # ffmpeg
+    "afplay" # OS X built-in
     "mpg123 --quiet"
     "maplay"
     "mplayer -really-quiet -noconsolecontrols"
