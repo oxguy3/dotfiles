@@ -168,13 +168,13 @@ playmp3() {
     if [ -n "$player" ]; then
         $player $@
     else
+        >&2 echo -e "\aCould not find an mp3 player"
         tput bel
-        >&2 echo "Could not find an mp3 player"
     fi
 }
 
 # play dumb sound effects
-for f in airhorn fanfare gg wilhelm quack xperror
+for f in airhorn dundun fanfare gg heylisten inception priceiswrong quack easybtn wilhelm wololo wompwomp xperror
 do
     alias "$f"="playmp3 $scriptsdir/sounds/$f.mp3"
 done
