@@ -144,11 +144,14 @@ function pjson() {
 # SOUND AND AUDIO
 ############################################################################
 
+
+
 # play dumb sound effects
 for f in airhorn dundun fanfare gg heylisten inception nope priceiswrong quack easybtn wilhelm wololo womp xperror
 do
     alias "$f"="playmp3 $scriptsdir/sounds/$f.mp3"
 done
+alias "sfx"="ls -1 $scriptsdir/sounds | grep .mp3 | sed s/\.mp3/\ / | tr -d '\n'; echo"
 
 # play the alert sound (terminal bell)
 alias ding='echo -n -e "\a"'
@@ -243,7 +246,9 @@ fi
 
 # typing is really hard, okay?
 alias dumbtypo="echo 'LEARN TO TYPE, MORON'"
+alias sl="dumbtypo; ls"
+alias rbuy="dumbtypo; ruby"
+alias pytohn="dumbtypo; python"
 if [ "$ostype" == "macosx" ]; then
     alias brwe="dumbtypo; brew"
-    alias sl="dumbtypo; ls"
 fi
