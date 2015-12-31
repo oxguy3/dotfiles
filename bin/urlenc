@@ -1,0 +1,78 @@
+#!/usr/bin/env python
+#
+# urlenc -- a CLI tool for URL encoding (dead simple wrapper for urllib)
+# Made by Hayden Schiff (oxguy3)
+# License is WTFPL <http://www.wtfpl.net/txt/copying/>
+#
+# Usage:
+#   Pass a string (via arguments or stdin), and urlenc will URL encode it.
+#   You can also decode and change how spaces are encoded; use the --help
+#   flag for more info.
+#
+# Examples:
+#   $ urlenc Hello World!
+#   Hello%20World%21
+#
+#   $ urlenc -d boring%20example
+#   boring example
+#
+#   $ urlenc -p spaces can be plusses too
+#   spaces+can+be+plusses+too
+#
+#   $ echo "look ma, stdin support\!" | urlenc
+#   look%20ma%2C%20stdin%20support%5C%21
+#
+#   $ urlenc "be careful with \"quotes\""
+#   be%20careful%20with%20%22quotes%22
+#
+# Security considerations:
+#   This script doesn't reject any characters; an encoded control character
+#   will be decoded without sanitization. If you are passing untrustworthy
+#   strings to this program, you will need to sanitize them yourself.
+#
+# Modifications:
+#   If you want --decode or --plus to be on by default, just change "store_true"
+#   to "store_false" in the appropriate `parser.add_argument` call below.
+
+import sys
+import urllib
+import argparse
+
+parser = argparse.ArgumentParser(description='Encodes a string for a URL')
+parser.add_argument('input', nargs='*',
+    help='string to encode (leave blank to use stdin)')
+parser.add_argument('-d', '--decode', action='store_true',
+    help='decode already-encoded input')
+parser.add_argument('-p', '--plus', action='store_true',
+    help='spaces are encoded as plus signs (+)')
+parser.add_argument('-l', '--preserve-breaks', action='store_true',
+    help='disables default behavior of trimming line breaks from input')
+args = parser.parse_args()
+
+# read input from command line
+input = ' '.join(args.input)
+
+# if no command line input was included, read from stdin
+if input.strip() == '':
+    input = ' '.join(sys.stdin.readlines())
+
+# strip pesky line breaks that are usually undesirable
+if not args.preserve_breaks:
+    input = input.strip("\r\n")
+
+result = ''
+
+# call the appropriate urllib function based on the 'decode' and 'plus' args
+if args.decode:
+    if args.plus:
+        result = urllib.unquote_plus(input)
+    else:
+        result = urllib.unquote(input)
+else:
+    if args.plus:
+        result = urllib.quote_plus(input)
+    else:
+        result = urllib.quote(input)
+
+# spit out the finished product
+print result

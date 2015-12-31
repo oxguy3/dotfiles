@@ -82,9 +82,6 @@ for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
     alias "$method"="lwp-request -m '$method'"
 done
 
-# URL-encode strings
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
-
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
     local port="${1:-8000}";
