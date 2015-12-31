@@ -31,8 +31,8 @@
 #   strings to this program, you will need to sanitize them yourself.
 #
 # Modifications:
-#   If you want --decode or --plus to be on by default, just change "store_true"
-#   to "store_false" in the appropriate `parser.add_argument` call below.
+#   If you want any of the boolean flags to be enabled by default, just change
+#   "store_true" to "store_false" in the argparse logic.
 
 import sys
 import urllib
@@ -45,7 +45,7 @@ parser.add_argument('-d', '--decode', action='store_true',
     help='decode already-encoded input')
 parser.add_argument('-p', '--plus', action='store_true',
     help='spaces are encoded as plus signs (+)')
-parser.add_argument('-l', '--preserve-breaks', action='store_true',
+parser.add_argument('-b', '--preserve-breaks', action='store_true',
     help='disables default behavior of trimming line breaks from input')
 args = parser.parse_args()
 
@@ -53,7 +53,7 @@ args = parser.parse_args()
 input = ' '.join(args.input)
 
 # if no command line input was included, read from stdin
-if input.strip() == '':
+if input == '':
     input = ' '.join(sys.stdin.readlines())
 
 # strip pesky line breaks that are usually undesirable
