@@ -23,6 +23,7 @@ fi
 # clean prompt
 PS1="[\u@\h \W]\$ "
 
+# override OS X's BSD utilities with superior GNU utils
 if [ "$ostype" == "macosx" ]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
     export MANPATH="$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH"
@@ -42,6 +43,7 @@ alias ~="cd ~"
 alias dc="cd ~/Documents"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
+alias dpic="cd ~/Pictures"
 
 # Create a new directory and enter it
 function mkd() {
@@ -49,6 +51,7 @@ function mkd() {
 }
 
 # Create a data URL from a file
+# TODO: tweak this to accept from stdin if possible
 function dataurl() {
     local mimeType=$(file -b --mime-type "$1");
     if [[ $mimeType == text/* ]]; then
@@ -74,6 +77,7 @@ function bak() {
 ############################################################################
 
 # One of @janmoesen’s ProTip™s
+# shortcuts for making HTTP requests
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
     alias "$method"="lwp-request -m '$method'"
 done
@@ -243,7 +247,7 @@ alias reload="exec $SHELL -l"
 
 # Lock the screen (when going AFK)
 if [ "$ostype" == "macosx" ]; then
-  alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+    alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 fi
 
 # typing is really hard, okay?
@@ -251,6 +255,4 @@ alias dumbtypo="echo 'LEARN TO TYPE, MORON'"
 alias sl="dumbtypo; ls"
 alias rbuy="dumbtypo; ruby"
 alias pytohn="dumbtypo; python"
-if [ "$ostype" == "macosx" ]; then
-    alias brwe="dumbtypo; brew"
-fi
+alias brwe="dumbtypo; brew"
