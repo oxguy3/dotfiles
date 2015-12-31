@@ -23,6 +23,10 @@ fi
 # clean prompt
 PS1="[\u@\h \W]\$ "
 
+if [ "$ostype" == "macosx" ]; then
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+    export MANPATH="$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH"
+fi
 
 ############################################################################
 # FILES AND DIRECTORIES
@@ -53,8 +57,9 @@ function dataurl() {
     echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
-# print $PATH in human-readable format
+# print $PATH and man-page directories in human-readable format
 alias showpath="echo $PATH | tr ':' '\n'"
+alias showman="man --path | tr ':' '\n'"
 
 # murder .DS_Store files
 alias fuckdsstore="find . -type f -name '*.DS_Store' -ls -delete"
@@ -144,14 +149,14 @@ function pjson() {
 # SOUND AND AUDIO
 ############################################################################
 
-
+# list available sound effects
+alias "sfx"="ls -1 $scriptsdir/sounds | grep .mp3 | sed s/\.mp3/\ / | tr -d '\n'; echo"
 
 # play dumb sound effects
-for f in airhorn dundun fanfare gg heylisten inception nope priceiswrong quack easybtn wilhelm wololo womp xperror
+for f in `sfx`
 do
     alias "$f"="playmp3 $scriptsdir/sounds/$f.mp3"
 done
-alias "sfx"="ls -1 $scriptsdir/sounds | grep .mp3 | sed s/\.mp3/\ / | tr -d '\n'; echo"
 
 # play the alert sound (terminal bell)
 alias ding='echo -n -e "\a"'
