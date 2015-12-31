@@ -110,8 +110,23 @@ elif [ "$ostype" == "windows" ]; then
     alias c="tr -d '\n' | clip"
 fi
 
+# TODO add full-width character converter
+
+# highly secure ROT13 encryption algorithm
+alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
+
+# get the Nth line of a file/stdin (pass "N" as first parameter)
+function lineno() {
+    num=$1
+    shift
+    sed $num"q;d" $@
+}
+
 # convert all whitespace characters to spaces and remove duplicate spaces
 alias cleanspace="tr -s '[:space:]' ' '"
+
+# remove diacritic marks
+alias noaccents="iconv -f utf8 -t ascii//TRANSLIT//IGNORE"
 
 # list all the words in the input file
 alias listwords='tr -cs "[:word:]" "\n"'
