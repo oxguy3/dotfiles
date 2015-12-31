@@ -10,7 +10,7 @@ scriptsdir="~/scripts"
 
 
 # figure out what OS we're running
-# kudos: http://stackoverflow.com/a/17072017/992504
+# h/t: http://stackoverflow.com/a/17072017/992504
 ostype="unknown"
 if [ "$(uname)" == "Darwin" ]; then
     ostype="macosx"
@@ -91,7 +91,7 @@ function server() {
     python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
 }
 
-# print IP addresses
+# print IP address
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias localip="ipconfig getifaddr en0"
 
@@ -144,12 +144,12 @@ alias errcho='>&2 echo'
 # generate a password that is random enough for simple uses
 # TODO: make character length specifiable via parameter
 # TODO: figure out some way to allow user-generated entropy
-if command -v shasum >/dev/null; then
-    alias genpasswd="date +%s-%N | shasum -a 256 | base64 | head -c 32 ; echo"
-elif command -v sha256sum >/dev/null; then
+if command -v sha256sum >/dev/null; then
     alias genpasswd="date +%s-%N | sha256sum | base64 | head -c 32 ; echo"
+elif command -v shasum >/dev/null; then
+    alias genpasswd="date +%s-%N | shasum -a 256 | base64 | head -c 32 ; echo"
 else
-    alias genpasswd="echo 'No SHA-256 executable found.'"
+    alias genpasswd="echo 'FAIL: No SHA-256 executable found.'"
 fi
 
 
@@ -158,16 +158,15 @@ fi
 ############################################################################
 
 # list available sound effects
-alias "sfx"="ls -1 $scriptsdir/sounds | grep .mp3 | sed s/\.mp3/\ / | tr -d '\n'; echo"
+alias sfx="ls -1 $scriptsdir/sounds | grep .mp3 | sed s/\.mp3/\ / | tr -d '\n'; echo"
 
 # play dumb sound effects
-for f in `sfx`
-do
+for f in `sfx`; do
     alias "$f"="playmp3 $scriptsdir/sounds/$f.mp3"
 done
 
-# play the alert sound (terminal bell)
-alias ding='echo -n -e "\a"'
+# play the bell sound (yeah I know `tput bel` exists, but POSIX compliance man!)
+alias ding='printf "\a"'
 
 # volume controls
 if command -v osascript >/dev/null; then
@@ -182,19 +181,14 @@ else
 fi
 
 ############################################################################
-# HACKS AND OTHER GARBAGE
+# MISCELLANEOUS CRAP
 ############################################################################
 
 # fix gnome .desktop files (resolves the issue where you have two dock icons for the same app)
 alias fixchrome="sudo sed '/\[Desktop Entry\]/a StartupWMClass=Google-chrome-stable' /usr/share/applications/google-chrome.desktop"
 alias fixmysqlworkbench="sudo sed '/\[Desktop Entry\]/a StartupWMClass=Mysql-workbench-bin' /usr/share/applications/mysql-workbench.desktop"
 
-
-############################################################################
-# MISCELLANEOUS CRAP
-############################################################################
-
-# # universal package manager basic commands
+# # universal package manager basic commands experiment
 # if command -v "brew" >/dev/null; then
 #     alias "pm"="brew"
 #     alias "pmin"="brew install"
