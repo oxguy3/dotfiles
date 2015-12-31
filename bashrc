@@ -128,21 +128,13 @@ alias errcho='>&2 echo'
 # generate a password that is random enough for simple uses
 # TODO: make character length specifiable via parameter
 # TODO: figure out some way to allow user-generated entropy
-if [ "$ostype" == "macosx" ]; then
+if command -v shasum >/dev/null; then
     alias genpasswd="date +%s-%N | shasum -a 256 | base64 | head -c 32 ; echo"
-else
+elif command -v sha256sum >/dev/null; then
     alias genpasswd="date +%s-%N | sha256sum | base64 | head -c 32 ; echo"
+else
+    alias genpasswd="echo 'No SHA-256 executable found.'"
 fi
-
-# Syntax-highlight JSON strings or files
-# Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
-function pjson() {
-    if [ -t 0 ]; then # argument
-        python -mjson.tool <<< "$*" | pygmentize -l javascript;
-    else # pipe
-        python -mjson.tool | pygmentize -l javascript;
-    fi;
-}
 
 
 ############################################################################
@@ -162,11 +154,16 @@ done
 alias ding='echo -n -e "\a"'
 
 # volume controls
-if [ "$ostype" == "macosx" ]; then
+if command -v osascript >/dev/null; then
     alias stfu="osascript -e 'set volume output muted true'"
     alias pumpitup="osascript -e 'set volume 7'"
+elif command -v amixer >/dev/null; then
+    alias stfu="amixer set Master mute"
+    alias pumpitup="amixer set Master 100 unmute"
+else
+    alias stfu="echo 'FAIL: Volume controls require amixer from the alsa-libs package.'"
+    alias pumpitup="echo 'FAIL: Volume controls require amixer from the alsa-libs package.'"
 fi
-
 
 ############################################################################
 # HACKS AND OTHER GARBAGE
