@@ -7,11 +7,12 @@
 #
 # TODO: try to add volume control
 # TODO: create playogg() and playwav()
+# TODO: if no MP3 software found, try to dynamically recommend software to install
 
 player=""
 declare -a players=(
-    "ffplay -nodisp" # ffmpeg
     "afplay" # OS X built-in
+    "ffplay -nodisp" # ffmpeg
     "mpg123 --quiet"
     "maplay"
     "mplayer -really-quiet -noconsolecontrols"
@@ -30,5 +31,5 @@ done
 if [ -n "$player" ]; then
     $player $@
 else
-    >&2 echo -e "\aCould not find an mp3 player"
+    >&2 echo -e "\aCould not find an MP3 player"
 fi
