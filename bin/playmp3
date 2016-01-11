@@ -5,6 +5,9 @@
 # Play an MP3 with whatever MP3 software is already installed.
 # Do whatever you want with this; the license is WTFPL.
 #
+# Usage:  playmp3 filename.mp3
+#    or:  playmp3 /path/to/file.mp3
+#
 # TODO: try to add volume control
 # TODO: create playogg() and playwav()
 # TODO: if no MP3 software found, try to dynamically recommend software to install
