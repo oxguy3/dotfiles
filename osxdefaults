@@ -35,7 +35,7 @@ brew install unzip
 brew install vim --override-system-vi
 brew install zsh
 
-# get that fuzzy GNU feeling
+# replace icky BSD tools with glorious GNU versions
 brew install coreutils
 brew install binutils
 brew install diffutils
@@ -73,6 +73,9 @@ brew install youtube-dl
 
 # ffmpeg is a multimedia utility pack
 brew install ffmpeg --with-ffplay --with-faac
+
+# adjusts screen tone based on time of day (better version of F.lux)
+brew install redshift
 
 
 # very useful python libraries
