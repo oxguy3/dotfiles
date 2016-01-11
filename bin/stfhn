@@ -2,12 +2,13 @@
 #
 # stfhn by Hayden Schiff (oxguy3)
 #
+# WIP -- NOT YET FULLY FUNCTIONAL
 # Sets the hostname permanently, regardless of which distro you're using
 # or what meddling software might be installed.
 #
-# Usage: hostdamn <unqualified name> [fully-qualified name]
+# Usage: stfhn <unqualified name> [fully-qualified name]
 #
-# Example:  hostdamn mymachine mymachine.example.com
+# Example:  stfhn mymachine mymachine.example.com
 #
 # If you omit the the fully-qualified name, it'll just set it to:
 #     <unqualified name>.local
