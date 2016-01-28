@@ -96,9 +96,9 @@ alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias localip="ipconfig getifaddr en0"
 
 # watch for a website to come back online
-# example: github down? do `mashf5 https://github.com`
+# example: github down? do `mashf5 github.com`
 function mashf5() {
-    watch -d -n 5 curl -I -s $1
+    watch -d -n 5 "curl --head --silent --location $1 | grep '^HTTP/'"
 }
 
 

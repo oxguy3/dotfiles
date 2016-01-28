@@ -97,6 +97,8 @@ npm install -g underscore-cli
 # bitly-cli for creating bit.ly links. do this:  bitly -u 'http://foo.bar/baz'
 #npm install -g bitly-cli
 
+# symlink for the useful `airport` command
+sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport
 
 ##### GENERAL UI/UX STUFF #####
 
