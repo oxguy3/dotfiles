@@ -101,7 +101,16 @@ function mashf5() {
     watch -d -n 5 "curl --head --silent --location $1 | grep '^HTTP/'"
 }
 
-
+# reverse DNS lookup via dig (only supports IPv4 cuz I'm lazy)
+function revdns() {
+    octets=""
+    backwardsip=""
+    IFS="." read -r -a octets <<< "$1"
+    for octet in "${octets[@]}"; do
+         backwardsip=$octet"."$backwardsip
+    done
+    dig ptr +short $backwardsip"in-addr.arpa"
+}
 
 ############################################################################
 # TEXT AND STRINGS
