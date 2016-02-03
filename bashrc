@@ -167,7 +167,6 @@ else
     alias genpasswd="echo 'FAIL: No SHA-256 executable found.'"
 fi
 
-
 ############################################################################
 # SOUND AND AUDIO
 ############################################################################
@@ -194,6 +193,10 @@ else
     alias stfu="echo 'FAIL: Volume controls require amixer from the alsa-libs package.'"
     alias pumpitup="echo 'FAIL: Volume controls require amixer from the alsa-libs package.'"
 fi
+
+# for utter silliness
+alias archey!="archey; tada"
+
 
 ############################################################################
 # MISCELLANEOUS CRAP
@@ -277,3 +280,5 @@ alias sl="dumbtypo; ls"
 alias rbuy="dumbtypo; ruby"
 alias pytohn="dumbtypo; python"
 alias brwe="dumbtypo; brew"
+alias arhcey="dumbtypo; archey"
+alias arhcey!="dumbtypo; archey!"
