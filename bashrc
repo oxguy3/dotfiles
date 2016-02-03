@@ -102,14 +102,19 @@ function mashf5() {
 }
 
 # reverse DNS lookup via dig (only supports IPv4 cuz I'm lazy)
-function revdns() {
+function reversedns() {
     octets=""
-    backwardsip=""
+    addr="in-addr.arpa"
     IFS="." read -r -a octets <<< "$1"
     for octet in "${octets[@]}"; do
-         backwardsip=$octet"."$backwardsip
+         addr=$octet"."$addr
     done
-    dig ptr +short $backwardsip"in-addr.arpa"
+    dig ptr $addr "${@:2}"
+}
+
+# shortcut function for terse output
+function revdns() {
+    reversedns $1 +short "${@:2}"
 }
 
 ############################################################################
