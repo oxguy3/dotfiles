@@ -25,7 +25,9 @@ Here's an explanation of what each sound is supposed to be:
 * **itemget.mp3**: sound from _Legend of Zelda_ games when you find something cool
 * **jason.mp3**: Ethan from _Heavy Rain_ shouting "JA-SON!"
 * **kaboom.mp3**: _Team Fortress 2_ voice clip of I-forget-which-character shouting "Ka-booooooom!"
+* **mgsalert.mp3**: guard alert sound from _Metal Gear Solid_
 * **nope.mp3**: _Team Fortress 2_ engineer saying "nope"
+* **ohno.mp3**: Knuckles from _Sonic the Hedgehog_
 * **pacdeath.mp3**: death sound from _Pac-Man_
 * **priceiswrong.mp3**: losing horn from _The Price is Right_
 * **quack.mp3**: a duck
@@ -43,6 +45,7 @@ Here's an explanation of what each sound is supposed to be:
 * **xperror.mp3**: the classic error noise from Windows XP
 * **xplogin.mp3**: the login sound effect from Windows XP
 * **yeah.mp3**: lengthy "YEEEAAAAAAAAHHH!" sound from _CSI_
+* **yeahboy.mp3**: [My longest yeah boy ever](https://www.youtube.com/watch?v=fvtQYsckLxk)
 * **yoskrill.mp3**: sample from "Kyoto (ft. Sirah)" by Skrillex
 
 Some day I'll convert these all to Ogg Vorbis sounds and accept free software as my lord and savior, but today I'm lazy.
