@@ -30,6 +30,13 @@ if [ "$ostype" == "macosx" ]; then
 fi
 
 ############################################################################
+# SYMFONY2
+############################################################################
+
+alias symfassets="php app/console cache:clear; php app/console assets:install --symlink; php app/console assetic:dump"
+alias symfsrv="php app/console server:run"
+
+############################################################################
 # FILES AND DIRECTORIES
 ############################################################################
 
@@ -71,6 +78,10 @@ alias fuckdsstore="find . -type f -name '*.DS_Store' -ls -delete"
 function bak() {
     cp $@{,.bak}
 }
+
+# aliases for ls with nice flags enabled
+alias lss="ls -ah"
+alias lsl="ls -ahl"
 
 ############################################################################
 # HTTP AND NETWORKING
@@ -120,6 +131,9 @@ function revdns() {
 ############################################################################
 # TEXT AND STRINGS
 ############################################################################
+
+# four letters is too many
+alias e="echo"
 
 # Trim new lines and copy to clipboard
 if [ "$ostype" == "macosx" ]; then
@@ -267,6 +281,9 @@ alias fixmysqlworkbench="sudo sed '/\[Desktop Entry\]/a StartupWMClass=Mysql-wor
 #     fi
 # fi
 
+# alias for pdfbox
+
+# if [! -f "$scriptsdir"] # FINISH THIS!!!!!!
 
 # git stuff
 alias git-undo="git reset --soft HEAD^"
@@ -278,6 +295,12 @@ alias reload="exec $SHELL -l"
 if [ "$ostype" == "macosx" ]; then
     alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 fi
+
+# because "youtube-dl" is the worst executable name ever
+alias ytdl="youtube-dl"
+
+# command-line weather
+alias weather="curl -4 http://wttr.in"
 
 # typing is really hard, okay?
 alias dumbtypo="echo 'LEARN TO TYPE, MORON'"
