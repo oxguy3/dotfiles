@@ -33,8 +33,8 @@ fi
 # SYMFONY2
 ############################################################################
 
-alias symfassets="php app/console cache:clear; php app/console assets:install --symlink; php app/console assetic:dump"
-alias symfsrv="php app/console server:run"
+alias symfassets="php app/console cache:clear -vv; php app/console assets:install -vv --symlink; php app/console assetic:dump -vv"
+alias symfsrv="php app/console server:run -vv"
 
 ############################################################################
 # FILES AND DIRECTORIES
@@ -82,6 +82,13 @@ function bak() {
 # aliases for ls with nice flags enabled
 alias lss="ls -ah"
 alias lsl="ls -ahl"
+
+# open things in various apps quickly
+if [ "$ostype" == "macosx" ]; then
+    alias chrome="open -a '/Applications/Google Chrome.app'"
+    alias firefox="open -a '/Applications/Firefox.app'"
+    alias textedit="open -a '/Applications/TextEdit.app'"
+fi
 
 ############################################################################
 # HTTP AND NETWORKING
