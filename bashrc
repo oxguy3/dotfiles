@@ -90,6 +90,18 @@ if [ "$ostype" == "macosx" ]; then
     alias textedit="open -a '/Applications/TextEdit.app'"
 fi
 
+# easily share a file via https://github.com/dutchcoders/transfer.sh
+# usage: transfer <filename>
+transfer() {
+    # write to output to tmpfile because of progress bar
+    tmpfile=$( mktemp -t transferXXX )
+    curl --progress-bar --upload-file $1 https://transfer.sh/$(basename $1) >> $tmpfile;
+    cat $tmpfile;
+    rm -f $tmpfile;
+}
+
+alias transfer=transfer
+
 ############################################################################
 # HTTP AND NETWORKING
 ############################################################################
