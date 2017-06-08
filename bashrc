@@ -90,18 +90,6 @@ if [ "$ostype" == "macosx" ]; then
     alias textedit="open -a '/Applications/TextEdit.app'"
 fi
 
-# easily share a file via https://github.com/dutchcoders/transfer.sh
-# usage: transfer <filename>
-transfer() {
-    # write to output to tmpfile because of progress bar
-    tmpfile=$( mktemp -t transferXXX )
-    curl --progress-bar --upload-file $1 https://transfer.sh/$(basename $1) >> $tmpfile;
-    cat $tmpfile;
-    rm -f $tmpfile;
-}
-
-alias transfer=transfer
-
 ############################################################################
 # HTTP AND NETWORKING
 ############################################################################
@@ -241,68 +229,10 @@ alias archey!="archey; tada"
 ############################################################################
 
 # fix gnome .desktop files (resolves the issue where you have two dock icons for the same app)
-alias fixchrome="sudo sed '/\[Desktop Entry\]/a StartupWMClass=Google-chrome-stable' /usr/share/applications/google-chrome.desktop"
-alias fixmysqlworkbench="sudo sed '/\[Desktop Entry\]/a StartupWMClass=Mysql-workbench-bin' /usr/share/applications/mysql-workbench.desktop"
-
-# # universal package manager basic commands experiment
-# if command -v "brew" >/dev/null; then
-#     alias "pm"="brew"
-#     alias "pmin"="brew install"
-#     alias "pmun"="brew uninstall"
-#     alias "pmre"="brew reinstall"
-#     alias "pmup"="brew update"
-#     alias "pmls"="brew list"
-#     alias "pmfind"=
-# elif command -v "dnf" >/dev/null; then
-#     alias "pm"="dnf"
-#     alias "pmin"="dnf install"
-#     alias "pmun"="brew uninstall"
-#     alias "pmre"="brew reinstall"
-#     alias "pmup"="brew update"
-#     alias "pmls"="brew update"
-# fi
-#
-# pman=""
-#
-# for p in brew apt-get yum dnf pacman; do
-#     if command -v $p >/dev/null; then
-#         pman="$p"
-#         break
-#     fi
-# done
-#
-# if [ -z "$pman" ]; then
-#     alias "pm"="$pm"
-#     alias "pmwhat"="echo 'You are using $pm!'"
-#     if [ "$pman" == "pacman" ]; then
-#         alias "pmin"="$pm --sync"
-#         alias "pmun"="$pm --remove"
-#         #alias "pmre"="$pm reinstall"
-#         alias "pmrf"="$pm --sync --refresh"
-#         alias "pmup"="$pm --upgrade"
-#         alias "pmuu"="$pm --sysupgrade --"
-#         alias "pmls"="$pm --query"
-#         alias "pmsearch"="$pm search"
-#     else
-#         alias "pmin"="$pm install"
-#         alias "pmun"="$pm uninstall"
-#         alias "pmls"="$pm list"
-#         alias "pmsearch"="$pm search"
-#         if [ "$pman" != "apt-get" ]; then
-#
-#             alias "pmre"="$pm reinstall"
-#         if [ "$pman" == "yum" ] || [ "$pman" == "dnf" ]; then
-#             alias "pmup"="$pm update"
-#             alias "pmuu"="$pm update"
-#         else
-#             alias "pmup"="$pm upgrade"
-#             alias "pmuu"="$pm update; $pm upgrade"
-#     fi
-# fi
-
-# alias for pdfbox
-
-# if [! -f "$scriptsdir"] # FINISH THIS!!!!!!
+if [ "$ostype" == "linux" ]; then
+    alias fixchrome="sudo sed '/\[Desktop Entry\]/a StartupWMClass=Google-chrome-stable' /usr/share/applications/google-chrome.desktop"
+    alias fixmysqlworkbench="sudo sed '/\[Desktop Entry\]/a StartupWMClass=Mysql-workbench-bin' /usr/share/applications/mysql-workbench.desktop"
+fi
 
 # git stuff
 alias git-undo="git reset --soft HEAD^"
@@ -320,6 +250,17 @@ alias ytdl="youtube-dl"
 
 # command-line weather
 alias weather="curl -4 http://wttr.in"
+
+# easily share a file via https://github.com/dutchcoders/transfer.sh
+# usage: transfer <filename>
+transfer() {
+    # write to output to tmpfile because of progress bar
+    tmpfile=$( mktemp -t transferXXX )
+    curl --progress-bar --upload-file $1 https://transfer.sh/$(basename $1) >> $tmpfile;
+    cat $tmpfile;
+    rm -f $tmpfile;
+}
+alias transfer=transfer
 
 # typing is really hard, okay?
 alias dumbtypo="echo 'LEARN TO TYPE, MORON'"
