@@ -30,6 +30,12 @@ Additionally, the following self-hosted Git web interfaces are supported
 
 ### Installation
 
+This script requires:
+
+* bash, version 3.x or newer
+* git, version 2.7 or newer
+* curl (used for identifying self-hosted services)
+
 These scripts provide six total custom actions. Use these settings to add each
 of them to your SourceTree installation:
 
@@ -46,5 +52,9 @@ of them to your SourceTree installation:
 at `/usr/local/bin/git`. If your `git` is somewhere else, edit the value of the
 `GIT` variable near the top of `get_web_url.sh`.
 
-Note: You may store these scripts wherever you like, so long as you put
-`get_web_url.sh` in the same directory.
+### Notes
+
+* You may store these scripts wherever you like, so long as you put
+  `get_web_url.sh` in the same directory.
+* If your repository has multiple remote URLs, this script iterate through the
+  list of URLs in order until it finds one it can idenify.

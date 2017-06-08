@@ -2,8 +2,6 @@
 # copy_web_url.sh
 # Wrapper for get_web_url.sh that automatically copies to clipboard
 
-echo $@
-
 # run get_web_url.sh, which is in the same directory as this script
 web_url=`$( dirname $0 )/get_web_url.sh $@`
 code=$?

@@ -6,13 +6,6 @@
 # need to hardcode because SourceTree provides a bad $PATH
 GIT="/usr/local/bin/git"
 
-# we need Bash 3.x or greater for regex in conditionals
-if [[ `echo $BASH_VERSION | cut -d'.' -f1` -lt '3' ]]
-then
-    >&2 echo "FAILURE: Bash 3.x or greater required."
-    exit 1
-fi
-
 # print message to stderr
 # if first argument is "--with-usage", usage info will also be printed
 function print_error() {
