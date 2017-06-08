@@ -4,7 +4,8 @@ actions. You can learn more about SourceTree custom actions [here](https://blog.
 
 ## Web URL scripts
 The `copy_web_url.sh` and `open_web_url.sh` scripts can be used to find the web
-URL of a particular file/commit/repository. This means you can view that item
+URL of a particular file/commit/repository, then copy it to your clipboard or
+open it in your web browser (respectively). This means you can view that item
 on github.com, bitbucket.org, etc.
 
 Both of these scripts utilize the `get_web_url.sh` script. Usage and more info
