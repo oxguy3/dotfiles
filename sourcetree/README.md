@@ -40,3 +40,10 @@ of them to your SourceTree installation:
 | Copy File URL          | /path/to/copy_web_url.sh | file $REPO $FILE  |
 | Open Commit in Browser | /path/to/open_web_url.sh | commit $REPO $SHA |
 | Copy Commit URL        | /path/to/copy_web_url.sh | commit $REPO $SHA |
+
+**Warning:** `get_web_url.sh` has the location of the `git` executable hardcoded
+at `/usr/local/bin/git`. If your `git` is somewhere else, edit the value of the
+`GIT` variable near the top of `get_web_url.sh`.
+
+Note: You may store these scripts wherever you like, so long as you put
+`get_web_url.sh` in the same directory.
