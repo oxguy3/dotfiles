@@ -1,0 +1,153 @@
+cask_args appdir: "/Applications"
+tap "caskroom/cask"
+tap "homebrew/bundle"
+tap "homebrew/core"
+tap "homebrew/dupes"
+tap "homebrew/php"
+tap "homebrew/services"
+tap "homebrew/versions"
+tap "homebrew/x11"
+brew "bash"
+brew "binutils"
+brew "coreutils"
+brew "diffutils"
+brew "ed", args: ["with-default-names"]
+brew "findutils", args: ["with-default-names"]
+brew "ghostscript"
+brew "gnu-indent", args: ["with-default-names"]
+brew "go"
+brew "gtk+"
+brew "lua"
+brew "mcrypt"
+brew "openssl"
+brew "ncurses"
+brew "wdiff", args: ["with-gettext"]
+cask "deluge"
+
+# audio/video
+brew "ffmpeg", args: ["with-ffplay", "with-faac"]
+brew "mpv"
+brew "rtmpdump"
+cask "vlc"
+cask "filebot"
+
+# command-line tools
+brew "archey"
+brew "gist"
+brew "less"
+brew "pv"
+brew "screen"
+brew "watch"
+brew "gnu-which", args: ["with-default-names"]
+cask "iterm2"
+
+# communication
+brew "slackcat"
+cask "slack"
+cask "textual"
+
+# compression
+brew "gnu-tar", args: ["with-default-names"]
+brew "gzip"
+brew "p7zip"
+brew "unrar"
+brew "unzip"
+
+# data handling
+brew "gnumeric"
+brew "jq"
+brew "mdbtools"
+cask "libreoffice"
+
+# dev tools
+brew "git"
+brew "make"
+brew "node"
+brew "ruby"
+cask "dash"
+cask "sourcetree"
+
+# file management
+brew "mmv"
+brew "rsync"
+brew "xcv"
+
+# fun stuff
+brew "cowsay"
+brew "figlet"
+cask "steam"
+
+# http/ftp
+brew "curl", args: ["with-openssl"]
+brew "httpie"
+brew "mitmproxy"
+brew "wget"
+cask "google-chrome"
+cask "filezilla"
+cask "firefox"
+cask "postman"
+
+# image manipulation
+brew "imagemagick"
+cask "inkscape"
+
+# mapping
+brew "osm2pgsql"
+cask "google-earth"
+cask "qgis"
+
+# networking
+brew "dnsmasq", restart_service: true
+brew "nmap"
+brew "sqlmap"
+cask "tunnelblick"
+cask "wireshark"
+
+# security
+brew "gnupg"
+brew "gpg-agent"
+brew "keybase"
+cask "1password"
+
+# text manipulation
+brew "gawk"
+brew "gnu-sed", args: ["with-default-names"]
+brew "grep", args: ["with-default-names"]
+brew "nano"
+cask "atom"
+cask "sublime-text"
+
+# tweaks
+brew "redshift"
+cask "karabiner"
+cask "seil"
+cask "spectacle"
+cask "usb-overdrive"
+
+### DEVELOPMENT ENVIRONMENTS ###
+
+# java
+brew "drip"
+cask "eclipse-java"
+
+# php
+brew "homebrew/php/php55", args: ["with-homebrew-curl"]
+brew "homebrew/php/php55-intl"
+brew "homebrew/php/php55-mcrypt"
+brew "homebrew/php/php55-pdo-pgsql"
+brew "homebrew/php/php55-xdebug"
+cask "phpstorm"
+
+# postgresql
+brew "pgloader"
+cask "pgadmin4"
+cask "postgres"
+cask "postico"
+cask "psequel"
+
+# python
+brew "python"
+brew "python3"
+
+# mysql
+cask "sequel-pro"

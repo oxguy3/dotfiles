@@ -1,0 +1,7 @@
+awscli
+deluge-client
+feedparser
+lxml
+pushbullet.py
+requests
+youtube-dl

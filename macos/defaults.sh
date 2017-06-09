@@ -3,90 +3,17 @@
 # based primarily on https://mths.be/osx
 # modified for my personal tastes
 
-
-# TODO: install 3270font as default monospace everywhere https://github.com/rbanffy/3270font
-
 # make sure sudo is available, and keep sudo alive
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 
 ##### INSTALL SCRIPTS #####
-# source for a lot of this section: https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
 
-# gotta get homebrew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-# update brew
-brew update
-
-# replace outdated OS X utils with the latest versions
-brew tap homebrew/dupes
-brew install bash
-brew install git
-brew install emacs
-brew install make
-brew install nano
-brew install less
-brew install rsync
-brew install ruby
-brew install svn
-brew install unzip
-brew install vim --override-system-vi
-brew install zsh
-
-# replace icky BSD tools with glorious GNU versions
-brew install coreutils
-brew install binutils
-brew install diffutils
-brew install ed --default-names
-brew install findutils --with-default-names
-brew install gawk
-brew install gnu-indent --with-default-names
-brew install gnu-sed --with-default-names
-brew install gnu-tar --with-default-names
-brew install gnu-which --with-default-names
-brew install gnutls
-brew install grep --with-default-names
-brew install gzip
-brew install screen
-brew install watch
-brew install wdiff --with-gettext
-brew install wget
-
-# lots of useful dev environments
-brew install python
-brew install python3
-brew install node
-
-# pipe viewing/monitoring utility
-brew install pv
-
-# more efficient compression tool than tar.gz
-brew install xz
-
-# tool for getting system specs in a pretty output
-brew install archey
-
-# tool for downloading audio/video from various websites
-brew install youtube-dl
-
-# ffmpeg is a multimedia utility pack
-brew install ffmpeg --with-ffplay --with-faac
-
-# adjusts screen tone based on time of day (better version of F.lux)
-brew install redshift
-
-
-# very useful python libraries
-pip install lxml
-pip install requests
-
-# CLI utility belt for manipulating tabular files (primarily CSVs)
-pip install csvkit
-
-# CLI tool for viewing Excel/CSV files
-sudo -H pip3 install x_x
+# gotta have Homebrew
+if command -v brew >/dev/null; then
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 # git command for quickly saving just before evacuating burning building
 npm install -g git-fire

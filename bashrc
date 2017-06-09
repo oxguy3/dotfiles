@@ -6,7 +6,7 @@
 # ...and probably other places I forgot to attribute (sorry!)
 
 # CHANGE THIS TO WHEREVER YOU HAVE THIS REPO SYNCED
-scriptsdir="~/scripts"
+scriptsdir="~/dotfiles"
 
 
 # figure out what OS we're running
