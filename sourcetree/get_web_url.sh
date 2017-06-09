@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # get_web_url.sh
 # Determines the remote web URL for a git commit/file/repository.
-# Usage: ./get_web_url.sh <commit|file|repo> <repo path> [file path or commit hash]
+# Usage: ./get_web_url.sh <commit|file|repo> [file path or commit hash]
 
 # need to hardcode because SourceTree provides a bad $PATH
 GIT="/usr/local/bin/git"
@@ -12,7 +12,7 @@ function print_error() {
     if [[ "$1" == "--with-usage" ]]
     then
         >&2 echo ${@:2}
-        >&2 echo "Usage: ./get_web_url.sh <commit|file|repo> <repo path> [file path or commit hash]"
+        >&2 echo "Usage: ./get_web_url.sh <commit|file|repo> [file path or commit hash]"
     else
         >&2 echo $@
     fi
@@ -60,38 +60,31 @@ function check_http_body() {
 
 # parse and validate arguments
 
-if [[ -z "$1" ]] || [[ -z "$2" ]]
+if [[ -z "$1" ]]
 then
     print_error --with-usage "FAILURE: Not enough parameters."
     exit 1
 fi
 
 ACTION="$1"
-REPO="$2"
-
-# verify repository path exists and is a directory
-if ! [[ -d "$REPO" ]]; then
-    print_error --with-usage "FAILURE: Invalid repository path."
-    exit 1
-fi
 
 if [[ "$ACTION" == "commit" ]]
 then
-    if [[ -z "$3" ]]; then
+    if [[ -z "$2" ]]; then
         print_error --with-usage "FAILURE: Missing commit hash."
         exit 1
     fi
-    SHA="$3"
+    SHA="$2"
 elif [[ "$ACTION" == "file" ]]
 then
-    if [[ -z "$3" ]]; then
+    if [[ -z "$2" ]]; then
         print_error --with-usage "FAILURE: Missing file path."
         exit 1
     fi
-    FILE="$3"
+    FILE="$2"
 elif [[ "$ACTION" != "repo" ]]
 then
-    if [[ -n "$3" ]]; then
+    if [[ -n "$2" ]]; then
         print_error --with-usage "FAILURE: Too many parameters."
         exit 1
     fi
@@ -100,17 +93,8 @@ else
     exit 1
 fi
 
-if [[ -n "$4" ]]; then
+if [[ -n "$3" ]]; then
     print_error --with-usage "FAILURE: Too many parameters."
-    exit 1
-fi
-
-cd "$REPO"
-
-# verify that a this folder actually contains a git repository
-if ! [[ -d ".git" ]]
-then
-    print_error --with-usage "FAILURE: Not a git repository."
     exit 1
 fi
 
@@ -155,7 +139,7 @@ do
         break
     elif [[ "$remote_domain" == "gitlab.com" ]]
     then
-        print_error "NOTE: Identified GitLab repository."
+        print_error "NOTE: Identified GitLab.com repository."
         web_repo="https://gitlab.com/$remote_repo"
         web_file="https://gitlab.com/$remote_repo/blob/$current_branch/$FILE"
         web_commit="https://gitlab.com/$remote_repo/commit/$SHA"

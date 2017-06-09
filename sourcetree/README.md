@@ -39,14 +39,14 @@ This script requires:
 These scripts provide six total custom actions. Use these settings to add each
 of them to your SourceTree installation:
 
-| Menu Caption           | Script target            | Parameters        |
-| ---------------------- | ------------------------ | ----------------- |
-| Open Repo in Browser   | /path/to/open_web_url.sh | repo $REPO        |
-| Copy Repo URL          | /path/to/copy_web_url.sh | repo $REPO        |
-| Open File in Browser   | /path/to/open_web_url.sh | file $REPO $FILE  |
-| Copy File URL          | /path/to/copy_web_url.sh | file $REPO $FILE  |
-| Open Commit in Browser | /path/to/open_web_url.sh | commit $REPO $SHA |
-| Copy Commit URL        | /path/to/copy_web_url.sh | commit $REPO $SHA |
+| Menu Caption           | Script target            | Parameters  |
+| ---------------------- | ------------------------ | ----------- |
+| Open Repo in Browser   | /path/to/open_web_url.sh | repo        |
+| Copy Repo URL          | /path/to/copy_web_url.sh | repo        |
+| Open File in Browser   | /path/to/open_web_url.sh | file $FILE  |
+| Copy File URL          | /path/to/copy_web_url.sh | file $FILE  |
+| Open Commit in Browser | /path/to/open_web_url.sh | commit $SHA |
+| Copy Commit URL        | /path/to/copy_web_url.sh | commit $SHA |
 
 **Warning:** `get_web_url.sh` has the location of the `git` executable hardcoded
 at `/usr/local/bin/git`. If your `git` is somewhere else, edit the value of the
@@ -57,4 +57,4 @@ at `/usr/local/bin/git`. If your `git` is somewhere else, edit the value of the
 * You may store these scripts wherever you like, so long as you put
   `get_web_url.sh` in the same directory.
 * If your repository has multiple remote URLs, this script iterate through the
-  list of URLs in order until it finds one it can idenify.
+  list of URLs in order until it finds one it can identify.
