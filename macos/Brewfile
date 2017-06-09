@@ -53,11 +53,12 @@ brew "p7zip"
 brew "unrar"
 brew "unzip"
 
-# data handling
+# data processing
 brew "gnumeric"
 brew "jq"
 brew "mdbtools"
 cask "libreoffice"
+cask "tabula"
 
 # dev tools
 brew "git"
