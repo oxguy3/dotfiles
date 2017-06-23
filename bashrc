@@ -33,8 +33,10 @@ fi
 # SYMFONY2
 ############################################################################
 
-alias symfassets="php app/console cache:clear -vv; php app/console assets:install -vv --symlink; php app/console assetic:dump -vv"
-alias symfsrv="php app/console server:run -vv"
+alias symf="php app/console -vv"
+alias symfassets="symf cache:clear; symf assets:install --symlink; symf assetic:dump"
+alias symfsrv="symf server:run"
+alias symfschema="symf doctrine:schema:update --force"
 
 ############################################################################
 # FILES AND DIRECTORIES
