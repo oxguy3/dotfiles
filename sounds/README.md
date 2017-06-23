@@ -11,6 +11,7 @@ Here's an explanation of what each sound is supposed to be:
 * **bitch.mp3**: Jesse Pinkman from _Breaking Bad_ shouting "BITCH!"
 * **bonk.mp3**: Scout from _Team Fortress 2_ saying "Bonk!"
 * **bruh.mp3**: unknown voice saying "BRUH!"
+* **chinah.mp3**: Donald Trump says "CHINA!"
 * **coinget.mp3**: coin grab sound from _Super Mario Bros_ games
 * **doit.mp3**: Shia LaBeouf encouraging you not to let your dreams be dreams
 * **donthate.mp3**: turret from _Portal_ saying "I don't hate you."
@@ -35,13 +36,14 @@ Here's an explanation of what each sound is supposed to be:
 * **sheep.mp3**: screaming sheep
 * **sonicboom.mp3**: voice clip "sonic boom" from I-forget-which-old-game
 * **tada.mp3**: celebratory sound effect
-* **td4w.mp3**: sample from "Turn Down for What" by DJ Snake and Lil Jon
+* **td4w.mp3**: "Turn Down for What" by DJ Snake and Lil Jon
 * **urapirate.mp3**: sample from _Lazy Town_ song "You Are a Pirate"
-* **warppipe.mp3**: warp pipe sound effect from _Super Mario Bros_ games
-* **whatchasay.mp3**: sample from "Hide and Seek" by Imogen Heap
+* **warppipe.mp3**: warp pipe from _Super Mario Bros_ games
+* **whatchasay.mp3**: "Hide and Seek" by Imogen Heap
 * **wilhelm.mp3**: the infamous [Wilhelm scream](https://en.wikipedia.org/wiki/Wilhelm_scream)
 * **wololo.mp3**: priest sound effect from _Age of Empires_
 * **womp.mp3**: sad trombone
+* **wrong.mp3**: Donald Trump says "WRONG."
 * **xperror.mp3**: the classic error noise from Windows XP
 * **xplogin.mp3**: the login sound effect from Windows XP
 * **yeah.mp3**: lengthy "YEEEAAAAAAAAHHH!" sound from _CSI_
