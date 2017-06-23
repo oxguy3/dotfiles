@@ -1,6 +1,4 @@
-# scripts/walls
-
-Wallpaper images.
+# Wallpapers
 
 Information/sources about each image:
 * **ferguson.jpg:** [photo of Edward Crawford during the 2014 Ferguson protests](http://www.stltoday.com/news/local/metro/the-pulitzer-prize-winning-photographs-from-the-post-dispatch/collection_7a5793c3-9a55-534c-b84a-a27d6d08ef5f.html#1), taken by [Robert Cohen](https://twitter.com/kodacohen) for the St. Louis Post-Dispatch
